@@ -27,12 +27,6 @@ function MenuItems() {
       <Menu.Item key="/watchStream">
         <NavLink to="/watchStream"> Watch Stream</NavLink>
       </Menu.Item>
-      <Menu.Item key="/wallet">
-        <NavLink to="/wallet">Wallet</NavLink>
-      </Menu.Item>
-      <Menu.Item key="/contract">
-        <NavLink to="/contract">Contract</NavLink>
-      </Menu.Item>
     </Menu>
   );
 }

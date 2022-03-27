@@ -18,6 +18,7 @@ import QuickStart from "components/QuickStart";
 import Contract from "components/Contract/Contract";
 import MenuItems from "./components/MenuItems";
 import StreamView from "components/StreamView";
+import Stream from "components/Stream";
 import Streamer from "components/Streamer";
 import { StateProvider } from "StateProvider";
 const { Header } = Layout;
@@ -153,6 +154,9 @@ const App = ({ isServerInfo }) => {
                 <Streamer />
               </Route>
               <Route path="/watchStream">
+                <Stream />
+              </Route>
+              <Route path="/eventPlayer">
                 <StreamView />
               </Route>
               <Route path="/">

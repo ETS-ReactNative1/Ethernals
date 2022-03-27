@@ -1,3 +1,26 @@
+@import url(../index.css);
+#steamer-component {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+}
+#form-logo {
+  width: 7vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3vh;
+}
+
+#form-head {
+  font-size: 3vw;
+  color: var(--ghost-white);
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
 .form {
   width: 400px;
   display: flex;
@@ -7,18 +30,50 @@
   align-items: center;
 }
 
-.form input {
-  background: whitesmoke;
-  box-sizing: border-box #000000;
-  border: 5px solid;
+.form input[type="text"] {
+  background: var(--blue2);
+  border: solid 1px var(--ghost-white);
   border-radius: 15px;
-  border-color: aquamarine;
   margin: 1vh 0vw;
   max-height: 60px;
   height: 50px;
   max-width: 355px;
   width: 355px;
-  color: black;
+  color: var(--grey1);
+  font-size: 20px;
+  line-height: 30px;
+  padding: 10px 10px 10px 35px;
+}
+form input::placeholder {
+  color: var(--grey1);
+  font-size: 20px;
+  line-height: 30px;
+}
+.form input[type="datetime-local"] {
+  background: whitesmoke;
+  box-sizing: border-box #000000;
+  border-radius: 15px;
+  margin: 1vh 0vw;
+  max-height: 60px;
+  height: 50px;
+  max-width: 355px;
+  width: 355px;
+  color: var(--grey1);
+  font-size: 20px;
+  line-height: 30px;
+  border: none;
+  padding: 10px 10px 10px 35px;
+}
+.form input[type="submit"] {
+  background: var(--light-green);
+  box-sizing: border-box #000000;
+  border-radius: 19px;
+  margin: 1vh 0vw;
+  max-height: 60px;
+  height: 50px;
+  max-width: 355px;
+  width: 355px;
+  color: var(--primary-background);
   font-size: 20px;
   line-height: 30px;
   border: none;
