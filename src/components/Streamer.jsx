@@ -1,10 +1,10 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect } from "react";
 import { useStateValue } from "../StateProvider";
 import { createStream, getStreamStatus } from "utils/apiFactory";
 import { APP_STATES } from "utils/types";
-import { streams_abi } from "contracts/streams"
-import PublishStream from './PublishStream';
-import { useMoralis } from 'react-moralis';
+import { streams_abi } from "contracts/streams";
+import PublishStream from "./PublishStream";
+import { useMoralis } from "react-moralis";
 import "components/Streamer.css";
 
 function Streamer() {
@@ -16,12 +16,12 @@ function Streamer() {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setFunctionCallParams(values => ({ ...values, [name]: value }))
-  }
+    setFunctionCallParams((values) => ({ ...values, [name]: value }));
+  };
   const handleFile = (event) => {
     event.preventDefault();
     setFile(event.target.files[0]);
-  }
+  };
   useEffect(async () => {
     if (state.appState === APP_STATES.CREATING_STREAM) {
       (async function () {
@@ -38,7 +38,6 @@ function Streamer() {
               type: "STREAM_CREATED",
               payload: { ...streamData },
             });
-
           }
         } catch (error) {
           if (error.response.status === 403) {
@@ -79,7 +78,7 @@ function Streamer() {
           _isActive: false,
         },
       };
-      console.log(sendOptions)
+      console.log(sendOptions);
       setContractCall(sendOptions);
     }
     let interval;
@@ -87,7 +86,7 @@ function Streamer() {
       interval = setInterval(async () => {
         const streamStatusResponse = await getStreamStatus(
           state.apiKey,
-          state.streamId
+          state.streamId,
         );
         if (streamStatusResponse.data) {
           const { isActive } = streamStatusResponse.data;
@@ -103,23 +102,49 @@ function Streamer() {
     };
   }, [state.appState]);
 
-
   return (
     <div>
-      <form className='form' onSubmit={(event) => {
-        event.preventDefault();
-        dispatch({
-          type: 'CREATE_CLICKED',
-        });
-      }
-      }>
-
-        <input type="text" name="_title" placeholder="Stream Name" onChange={handleChange} /><br />
-        <label>Choose thumbnail image
-          <input type="file" accept="image/*" name="img_file" placeholder="Image" onChange={handleFile} /><br />
+      <form
+        className="form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          dispatch({
+            type: "CREATE_CLICKED",
+          });
+        }}
+      >
+        <input
+          type="text"
+          name="_title"
+          placeholder="Stream Name"
+          onChange={handleChange}
+        />
+        <br />
+        <label>
+          Choose thumbnail image
+          <input
+            type="file"
+            accept="image/*"
+            name="img_file"
+            placeholder="Image"
+            onChange={handleFile}
+          />
+          <br />
         </label>
-        <input type="text" name="_description" placeholder="Stream Description" onChange={handleChange} /><br />
-        <input type="datetime-local" id="meeting-time" name="_date" onChange={handleChange} /><br />
+        <input
+          type="text"
+          name="_description"
+          placeholder="Stream Description"
+          onChange={handleChange}
+        />
+        <br />
+        <input
+          type="datetime-local"
+          id="meeting-time"
+          name="_date"
+          onChange={handleChange}
+        />
+        <br />
         <input type="submit" value="Publish Stream" />
       </form>
 
@@ -132,12 +157,10 @@ function Streamer() {
         </>
         )
       }  */}
-      {
-        ((state.appState == APP_STATES.WAITING_FOR_VIDEO) && (state.error == null)) && <PublishStream params={contractCall} />
-      }
-
+      {state.appState == APP_STATES.WAITING_FOR_VIDEO &&
+        state.error == null && <PublishStream params={contractCall} />}
     </div>
-  )
+  );
 }
 
-export default Streamer
+export default Streamer;

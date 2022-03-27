@@ -39,14 +39,11 @@ export const createStream = (apiKey) => {
         "content-type": "application/json",
         authorization: `Bearer ${apiKey}`,
       },
-    }
+    },
   );
 };
 
-export const getStreamStatus = (
-  apiKey,
-  streamId
-)=> {
+export const getStreamStatus = (apiKey, streamId) => {
   return apiInstance.get(`/stream/${streamId}`, {
     headers: {
       "content-type": "application/json",

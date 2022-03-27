@@ -1,9 +1,8 @@
 import { Card, Timeline, Typography, Button } from "antd";
-import { RightCircleOutlined, PlayCircleOutlined } from '@ant-design/icons';
+import { RightCircleOutlined, PlayCircleOutlined } from "@ant-design/icons";
 import React, { useMemo } from "react";
 import { useMoralis } from "react-moralis";
-import { Row, Col } from 'antd';
-
+import { Row, Col } from "antd";
 
 import "components/Home.css";
 
@@ -15,10 +14,22 @@ export default function QuickStart({ isServerInfo }) {
       <Col span={18}>
         <h1 id="banner-head">Host and attend live events!</h1>
         <h2 id="tagline">The future of live streaming</h2>
-        <Button type="primary" className="home-button" shape="round" icon={<RightCircleOutlined />} size='large'>
+        <Button
+          type="primary"
+          className="home-button"
+          shape="round"
+          icon={<RightCircleOutlined />}
+          size="large"
+        >
           Start Stream
         </Button>
-        <Button type="primary" className="home-button" shape="round" icon={<PlayCircleOutlined />} size='large'>
+        <Button
+          type="primary"
+          className="home-button"
+          shape="round"
+          icon={<PlayCircleOutlined />}
+          size="large"
+        >
           View Stream
         </Button>
       </Col>

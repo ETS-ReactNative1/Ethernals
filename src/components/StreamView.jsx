@@ -1,11 +1,11 @@
-import React from 'react'
-import Stream from './Stream'
+import React from "react";
+import Stream from "./Stream";
 function StreamView() {
   return (
     <div>
-        <Stream />
+      <Stream />
     </div>
-  )
+  );
 }
 
-export default StreamView
+export default StreamView;

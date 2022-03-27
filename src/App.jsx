@@ -58,14 +58,14 @@ const App = ({ isServerInfo }) => {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
     useMoralis();
   const initialState = {
-      appState: APP_STATES.API_KEY,
-      apiKey: livepeerApiKey,
-      streamId: null,
-      playbackId: null,
-      playbackURL: null,
-      streamKey: null,
-      streamIsActive: false,
-      error: null,
+    appState: APP_STATES.API_KEY,
+    apiKey: livepeerApiKey,
+    streamId: null,
+    playbackId: null,
+    playbackURL: null,
+    streamKey: null,
+    streamIsActive: false,
+    error: null,
   };
   useEffect(() => {
     const connectorId = window.localStorage.getItem("connectorId");
@@ -76,10 +76,10 @@ const App = ({ isServerInfo }) => {
 
   const reducer = (state, action) => {
     switch (action.type) {
-      case 'streamKeyInput':
+      case "streamKeyInput":
         return {
           ...state,
-          states: action.newStreamKey
+          states: action.newStreamKey,
         };
       case "CREATE_CLICKED":
         return {
@@ -94,7 +94,7 @@ const App = ({ isServerInfo }) => {
           playbackId: action.payload.playbackId,
           playbackURL: `https://cdn.livepeer.com/hls/${action.payload.playbackId}/index.m3u8`,
           streamKey: action.payload.streamKey,
-        }; 
+        };
       case "VIDEO_STARTED":
         return {
           ...state,
@@ -112,7 +112,7 @@ const App = ({ isServerInfo }) => {
           ...state,
           error: action.payload.message,
         };
- 
+
       default:
         return state;
     }
@@ -150,10 +150,10 @@ const App = ({ isServerInfo }) => {
                 <Contract />
               </Route>
               <Route path="/stream">
-                <Streamer/>
+                <Streamer />
               </Route>
               <Route path="/watchStream">
-                <StreamView/>
+                <StreamView />
               </Route>
               <Route path="/">
                 <Redirect to="/quickstart" />
