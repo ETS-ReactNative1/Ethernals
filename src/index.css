@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+:root {
+    --ghost-white: #F8FAFB;
+    --primary-background: #083244;
+    --light-green: #6CE17A;
+    --primary-font-family: 'Poppins', sans-serif;
+  }
+
 *,
 *::before,
 *::after {
@@ -24,6 +32,7 @@ blockquote,
 dl,
 dd {
   margin: 0;
+  /* font-family: var(--primary-font-family); */
 }
 
 body {
@@ -56,4 +65,7 @@ button,
 textarea,
 select {
   font: inherit;
+}
+section.ant-layout {
+  background-color: var(--primary-background);
 }

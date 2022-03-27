@@ -1,0 +1,26 @@
+@import url(../index.css);
+body {
+    background-color: var(--primary-background);
+}
+#banner-head {
+    font-size: 70px;
+    color: var(--ghost-white);
+}
+
+#tagline {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: var(--light-green);
+}
+
+.home-button {
+    /* font-size: 24px; */
+    background-color: var(--primary-background);
+    border-color: var(--light-green);
+    margin-right: 20px;
+}
+.home-button:hover {
+    background-color: var(--ghost-white);
+    color: var(--primary-background);
+    border: 0;
+}
