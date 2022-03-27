@@ -5,6 +5,7 @@ import { MoralisProvider } from "react-moralis";
 import "./index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import QuickStart from "components/QuickStart";
+import BiconomyContextProvider from "context/BiconomyProvider";
 
 /** Get your free Moralis Account https://moralis.io/ */
 
@@ -21,7 +22,9 @@ const Application = () => {
   if (isServerInfo)
     return (
       <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
-        <App isServerInfo />
+        {/* <BiconomyContextProvider> */}
+          <App isServerInfo />
+        {/* </BiconomyContextProvider> */}
       </MoralisProvider>
     );
   else {

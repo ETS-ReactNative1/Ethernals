@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useWeb3Contract } from "react-moralis";
-
+import "components/PublishStream.css";
 function PublishStream(params) {
   const { runContractFunction, contractResponse, error, isRunning, isLoading } =
     useWeb3Contract(params.params);
@@ -8,9 +8,9 @@ function PublishStream(params) {
     <>
       {!contractResponse ? (
         <div>
-          <h1>Confirm?</h1>
+          <h1>Start Stream</h1>
           <button onClick={() => runContractFunction()} disabled={isLoading}>
-            Confirm
+            Start Stream
           </button>
         </div>
       ) : (

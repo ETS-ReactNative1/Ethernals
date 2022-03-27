@@ -4,17 +4,19 @@ import { createStream, getStreamStatus } from "utils/apiFactory";
 import { APP_STATES } from "utils/types";
 import { streams_abi } from "contracts/streams";
 import PublishStream from "./PublishStream";
-import { useMoralis } from "react-moralis";
+import { useMoralis, useWeb3Contract } from "react-moralis";
+
 import "components/Streamer.css";
 import logoLight from "../assets/Logo-light.png";
 import { Upload, message, DatePicker } from "antd";
-import { InboxOutlined } from "@ant-design/icons";
+import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
 
 function Streamer() {
   const [state, dispatch] = useStateValue();
   const { Moralis } = useMoralis();
   const [functionCallParams, setFunctionCallParams] = useState({});
   const [contractCall, setContractCall] = useState({});
+  const [isdisabled, setIsdisabled] = useState(false);
   const [file, setFile] = useState();
   // const { Dragger } = Upload;
 
@@ -95,7 +97,7 @@ function Streamer() {
       console.log("imgHash", imghash);
       const sendOptions = {
         chain: "polygon",
-        contractAddress: "0x9142fF1cC50cC07b77CeA66F7667013FDd716A44",
+        contractAddress: process.env.REACT_APP_CONTRACT_ADDRESS,
         functionName: "publishStream",
         abi: streams_abi,
         params: {
@@ -142,55 +144,81 @@ function Streamer() {
   // }
   // -------------
   return (
-    <div id="streamer-component">
-      <img id="form-logo" src={logoLight} />
-      <div id="form-head"> Host an Event </div>
-      <form
-        className="form"
-        onSubmit={(event) => {
-          event.preventDefault();
-          dispatch({
-            type: "CREATE_CLICKED",
-          });
-        }}
-      >
-        <input
-          type="text"
-          name="_title"
-          placeholder="Stream Name"
-          onChange={handleChange}
-        />
-        <br />
-        <label>
-          Choose thumbnail image
-          <input
-            type="file"
-            accept="image/*"
-            name="img_file"
-            placeholder="Image"
-            onChange={handleFile}
-          />
-          <br />
-        </label>
-        <input
-          type="text"
-          name="_description"
-          placeholder="Stream Description"
-          onChange={handleChange}
-        />
-        <br />
-        <input
-          type="datetime-local"
-          id="meeting-time"
-          name="_date"
-          onChange={handleChange}
-        />
-        {/* <DatePicker showTime onChange={handleChange} onOk={onOk} /> */}
-        <br />
-        <input type="submit" value="Publish Stream" />
-      </form>
+    <>
+      {!isdisabled ? (
+        <>
+          <div id="streamer-component">
+            <img id="form-logo" src={logoLight} />
+            <div id="form-head"> Host an Event </div>
+            <form
+              className="form"
+              onSubmit={(event) => {
+                event.preventDefault();
+                setIsdisabled(true);
+                dispatch({
+                  type: "CREATE_CLICKED",
+                });
+              }}
+            >
+              <input
+                type="text"
+                name="_title"
+                placeholder="Stream Name"
+                onChange={handleChange}
+              />
+              <br />
+              <div id="thubnail-div">
+                <span>Thubnail image</span>
+                <div>
+                  <label>
+                    Choose
+                    <input
+                      type="file"
+                      accept="image/*"
+                      name="img_file"
+                      placeholder="Image"
+                      onChange={handleFile}
+                    />
+                    {/* <span>Choose</span> */}
+                    <br />
+                  </label>
+                </div>
+              </div>
+              <input
+                type="text"
+                name="_description"
+                placeholder="Stream Description"
+                onChange={handleChange}
+              />
+              {/* ----------- */}
+              {/* <br />
+        <div className="drag-area">
+          <div className="icon">
+            <UploadOutlined />
+          </div>
+          <header>Drag & Drop to Upload File</header>
+          <span>OR</span>
+          <button>Browse File</button>
+          <input type="file" hidden />
+        </div> */}
+              {/* -------- */}
+              <br />
+              <input
+                type="datetime-local"
+                id="meeting-time"
+                name="_date"
+                onChange={handleChange}
+              />
+              {/* <DatePicker showTime onChange={handleChange} onOk={onOk} /> */}
+              <br />
+              <input
+                type="submit"
+                value="Publish Stream"
+                disabled={isdisabled}
+              />
+            </form>
 
-      {/* {
+            {/* {
         ((state.appState==APP_STATES.WAITING_FOR_VIDEO)&&(state.error==null))&&(<><p>
           Stream Key: {state.streamKey}<br/>
           Stream ID: {state.streamId}<br/>
@@ -199,9 +227,27 @@ function Streamer() {
         </>
         )
       }  */}
-      {state.appState == APP_STATES.WAITING_FOR_VIDEO &&
-        state.error == null && <PublishStream params={contractCall} />}
-    </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="streamkeys">
+            <h1>
+              Stream Key: <span>{state.streamKey}</span>
+            </h1>
+
+            <br />
+            <h1>
+              Playback URL: <span>{state.playbackURL}</span>
+            </h1>
+          </div>
+          <div>
+            {state.appState == APP_STATES.WAITING_FOR_VIDEO &&
+              contractCall != {} && <PublishStream params={contractCall} />}
+          </div>
+        </>
+      )}
+    </>
   );
 }
 

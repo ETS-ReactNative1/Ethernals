@@ -20,7 +20,7 @@ function Stream() {
   const { Meta } = Card;
 
   const getStreams = async () => {
-    const query = new Moralis.Query("Streams");
+    const query = new Moralis.Query("PublishedStreams");
     const fetched_streams = await query.find();
     setStreams(fetched_streams);
     console.log(fetched_streams);
