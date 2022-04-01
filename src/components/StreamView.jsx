@@ -14,13 +14,13 @@ function StreamView() {
   return (
     <div className="player-div">
       <ReactHlsPlayer
-        src={stream.attributes.playbackURL}
+        src={stream.attributes.streamURL}
         autoPlay={true}
         controls={true}
         width="100%"
         height="600px"
       />
-      {/* <button onClick={() => handleClick()}>check</button> */}
+      <button onClick={() => handleClick()}>check</button>
       <h1>{stream.attributes.title}</h1>
       <br />
       <h3>Description</h3>

@@ -1,11 +1,6 @@
-.streamstartkeys {
-  text-align: center;
-}
-.start-stream h1 {
-  font-size: 30px;
-  color: var(--ghost-white);
-}
-.start-stream button {
+@import url(../index.css);
+
+button {
   background: var(--light-green);
   box-sizing: border-box #000000;
   border-radius: 19px;

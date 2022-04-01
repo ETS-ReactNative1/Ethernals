@@ -8,6 +8,7 @@ contract Streams {
 
   struct stream {
     uint256 id;
+    string streamId;
     string streamURL;
     string title;
     string img_hash;
@@ -19,10 +20,11 @@ contract Streams {
 
   event StreamPublished(
     uint256 id,
+    string streamId,
     string streamURL,
     string title,
-    string date,
     string img_hash,
+    string date,
     string description,
     address author,
     bool isActive
@@ -31,9 +33,10 @@ contract Streams {
   constructor() {}
 
   function publishStream(
-    string memory _imgHash,
     string memory _title,
+    string memory _imgHash,
     string memory _date,
+    string memory _streamId,
     string memory _streamUrl,
     string memory _description,
     bool _isActive
@@ -41,6 +44,7 @@ contract Streams {
     // Make sure the video hash exists
     require(bytes(_imgHash).length > 0);
     // Make sure video title exists
+    require(bytes(_streamId).length > 0);
     require(bytes(_streamUrl).length > 0);
     require(bytes(_description).length > 0);
     require(bytes(_title).length > 0);
@@ -53,6 +57,7 @@ contract Streams {
     // Add video to the contract
     streams[streamCount] = stream(
       streamCount,
+      _streamId,
       _streamUrl,
       _title,
       _date,
@@ -64,10 +69,11 @@ contract Streams {
     // Trigger an event
     emit StreamPublished(
       streamCount,
-      _imgHash,
-      _title,
-      _date,
+      _streamId,
       _streamUrl,
+      _title,
+      _imgHash,
+      _date,
       _description,
       msg.sender,
       _isActive

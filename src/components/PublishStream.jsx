@@ -7,8 +7,8 @@ function PublishStream(params) {
   return (
     <>
       {!contractResponse ? (
-        <div>
-          <h1>Start Stream</h1>
+        <div className="start-stream">
+          {/* <h1>Start Stream</h1> */}
           <button onClick={() => runContractFunction()} disabled={isLoading}>
             Start Stream
           </button>

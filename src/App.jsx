@@ -18,11 +18,13 @@ import QuickStart from "components/QuickStart";
 import Contract from "components/Contract/Contract";
 import MenuItems from "./components/MenuItems";
 import StreamView from "components/StreamView";
+import HostView from "components/HostView";
 import Stream from "components/Stream";
 import Streamer from "components/Streamer";
 import { StateProvider } from "StateProvider";
 const { Header } = Layout;
 import { APP_STATES } from "utils/types";
+import MyEvents from "components/MyEvents";
 
 const styles = {
   content: {
@@ -128,12 +130,12 @@ const App = ({ isServerInfo }) => {
             <MenuItems />
             <div style={styles.headerRight}>
               <Chains />
-              <TokenPrice
+              {/* <TokenPrice
                 address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
                 chain="eth"
                 image="https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
                 size="40px"
-              />
+              /> */}
               <NativeBalance />
               <Account />
             </div>
@@ -144,12 +146,6 @@ const App = ({ isServerInfo }) => {
               <Route exact path="/quickstart">
                 <QuickStart isServerInfo={isServerInfo} />
               </Route>
-              <Route path="/wallet">
-                <Wallet />
-              </Route>
-              <Route path="/contract">
-                <Contract />
-              </Route>
               <Route path="/stream">
                 <Streamer />
               </Route>
@@ -158,6 +154,12 @@ const App = ({ isServerInfo }) => {
               </Route>
               <Route path="/eventPlayer">
                 <StreamView />
+              </Route>
+              <Route path="/eventHost">
+                <HostView />
+              </Route>
+              <Route path="/myEvents">
+                <MyEvents />
               </Route>
               <Route path="/">
                 <Redirect to="/quickstart" />

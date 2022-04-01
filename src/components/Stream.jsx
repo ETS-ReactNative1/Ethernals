@@ -1,8 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useStateValue } from "../StateProvider";
 import { useMoralis } from "react-moralis";
-import axios from "axios";
 import Blockie from "components/Blockie";
 import { Card, Avatar } from "antd";
 import { Link } from "react-router-dom";
@@ -14,19 +12,19 @@ import {
 import "components/Stream.css";
 
 function Stream() {
-  const [state, _] = useStateValue();
   const [streams, setStreams] = useState();
   const { Moralis } = useMoralis();
   const { Meta } = Card;
 
-  const getStreams = async () => {
+  // const getStreams = async () => {
+    
+  // };
+  useEffect(async () => {
+    // getStreams();
     const query = new Moralis.Query("PublishedStreams");
     const fetched_streams = await query.find();
     setStreams(fetched_streams);
     console.log(fetched_streams);
-  };
-  useEffect(() => {
-    getStreams();
     // getThumbnail(streams[0].attributes.img_hash);
   }, []);
 

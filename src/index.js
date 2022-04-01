@@ -23,7 +23,7 @@ const Application = () => {
     return (
       <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
         {/* <BiconomyContextProvider> */}
-          <App isServerInfo />
+        <App isServerInfo />
         {/* </BiconomyContextProvider> */}
       </MoralisProvider>
     );

@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import { useStateValue } from "../StateProvider";
 import { createStream, getStreamStatus } from "utils/apiFactory";
 import { APP_STATES } from "utils/types";
@@ -19,6 +19,7 @@ function Streamer() {
   const [isdisabled, setIsdisabled] = useState(false);
   const [file, setFile] = useState();
   // const { Dragger } = Upload;
+  const file_input_label = useRef(null);
 
   // const props = {
   //   name: "file",
@@ -50,12 +51,14 @@ function Streamer() {
   const handleFile = (event) => {
     event.preventDefault();
     setFile(event.target.files[0]);
+    console.log(file);
+    file_input_label.current.innerHTML = file.name;
   };
   useEffect(async () => {
     if (state.appState === APP_STATES.CREATING_STREAM) {
       (async function () {
         try {
-          const streamCreateResponse = await createStream(state.apiKey);
+          const streamCreateResponse = await createStream(state.apiKey, functionCallParams._title);
           if (streamCreateResponse.data) {
             const streamData = {
               streamId: streamCreateResponse.data.id,
@@ -167,7 +170,7 @@ function Streamer() {
                 onChange={handleChange}
               />
               <br />
-              <div id="thubnail-div">
+              {/* <div id="thubnail-div">
                 <span>Thubnail image</span>
                 <div>
                   <label>
@@ -179,11 +182,33 @@ function Streamer() {
                       placeholder="Image"
                       onChange={handleFile}
                     />
-                    {/* <span>Choose</span> */}
+                    <span>Choose</span>
                     <br />
                   </label>
                 </div>
+              </div> */}
+
+              {/* ----neww */}
+              <div id="thubnail-div">
+                <span>Thubnail image</span>
+                {/* <div> */}
+                <label>
+                  <span ref={file_input_label}>Choose a file</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    name="img_file"
+                    id="imgFileInput"
+                    className="fileinput"
+                    placeholder="Image"
+                    onChange={handleFile}
+                  />
+                </label>
+                {/* </div> */}
               </div>
+
+              {/* ------- */}
+
               <input
                 type="text"
                 name="_description"
@@ -231,19 +256,22 @@ function Streamer() {
         </>
       ) : (
         <>
-          <div className="streamkeys">
-            <h1>
-              Stream Key: <span>{state.streamKey}</span>
-            </h1>
+          <div className="streamstartkeys">
+            <div className="streamkeys">
+              <h1>
+                Stream Key: <span>{state.streamKey}</span>
+              </h1>
 
+              <br />
+              <h1>
+                Playback URL: <span>{state.playbackURL}</span>
+              </h1>
+            </div>
             <br />
-            <h1>
-              Playback URL: <span>{state.playbackURL}</span>
-            </h1>
-          </div>
-          <div>
-            {state.appState == APP_STATES.WAITING_FOR_VIDEO &&
-              contractCall != {} && <PublishStream params={contractCall} />}
+            <div>
+              {state.appState == APP_STATES.WAITING_FOR_VIDEO &&
+                contractCall != {} && <PublishStream params={contractCall} />}
+            </div>
           </div>
         </>
       )}

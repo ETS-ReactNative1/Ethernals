@@ -46,7 +46,7 @@
 .form div {
   text-align: center;
 }
-.form label {
+.form labell {
   /* text-align: left; */
   background: var(--light-green);
   box-sizing: border-box #000000;
@@ -62,8 +62,44 @@
   border: none;
   padding: 10px 10px 10px 35px;
 }
-.form input[type="file"] {
-  display: none;
+#imgFileInput {
+  /* display: none; */
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+#thubnail-div label {
+  /* font-size: 1.25em; */
+  /* font-weight: 700; */
+  color: var(--primary-background);
+  background: var(--light-green);
+  display: inline-block;
+  cursor: pointer;
+  /* outline: 1px dotted #000; */
+  /* outline: -webkit-focus-ring-color auto 5px; */
+  font-size: 20px;
+  border-radius: 15px;
+  border: none;
+  padding: 10px 10px 10px 35px;
+  text-align: center;
+  /* box-sizing: border-box #000000;
+  border-radius: 15px;
+  margin: 1vh 0vw;
+  max-height: 30px;
+  height: 50px;
+  font-size: 20px;
+  line-height: 30px;
+  border: none;
+  padding: 10px 10px 10px 35px; */
+}
+
+#imgFileInput:focus label,
+#imgFileInput label:hover {
+  background-color: red;
 }
 
 .form input[type="text"] {
