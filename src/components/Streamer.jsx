@@ -52,7 +52,7 @@ function Streamer() {
     event.preventDefault();
     setFile(event.target.files[0]);
     console.log(file);
-    file_input_label.current.innerHTML = file.name;
+    // file_input_label.current.innerHTML = event.target.files[0].name;
   };
   useEffect(async () => {
     if (state.appState === APP_STATES.CREATING_STREAM) {
@@ -106,6 +106,7 @@ function Streamer() {
         params: {
           ...functionCallParams,
           _streamUrl: state.playbackURL,
+          _streamId: state.streamId,
           _imgHash: imghash,
           _isActive: false,
         },

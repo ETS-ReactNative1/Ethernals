@@ -17,11 +17,11 @@ function Stream() {
   const { Meta } = Card;
 
   // const getStreams = async () => {
-    
+
   // };
   useEffect(async () => {
     // getStreams();
-    const query = new Moralis.Query("PublishedStreams");
+    const query = new Moralis.Query("streams");
     const fetched_streams = await query.find();
     setStreams(fetched_streams);
     console.log(fetched_streams);
@@ -45,7 +45,7 @@ function Stream() {
                 key={stream.attributes.transaction_hash}
                 style={{ width: 300 }}
                 cover={
-                  <Link to={{ pathname: "/eventPlayer", state: stream }}>
+                  <Link to={{ pathname: "/register", state: stream }}>
                     <img
                       src={`https://gateway.moralisipfs.com/ipfs/${stream.attributes.img_hash}`}
                     />

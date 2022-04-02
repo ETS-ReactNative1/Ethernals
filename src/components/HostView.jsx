@@ -12,27 +12,30 @@ function HostView() {
   const location = useLocation();
   const stream = location.state;
   const [drawer, setDrawer] = useState({ visible: false, placement: 'bottom' });
-    const showDrawer = () => {
-        setDrawer({...drawer,
-            visible: true,
-        });
-      };
-    
-      const onClose = () => {
-        setDrawer({...drawer,
-        visible: false,
-        });
-      };
-    
-      const onChange = (e) => {
-        setDrawer({...drawer,
-          placement: e.target.value,
-        });
-      };
-   
-  useEffect(async() => {
+  const showDrawer = () => {
+    setDrawer({
+      ...drawer,
+      visible: true,
+    });
+  };
+
+  const onClose = () => {
+    setDrawer({
+      ...drawer,
+      visible: false,
+    });
+  };
+
+  const onChange = (e) => {
+    setDrawer({
+      ...drawer,
+      placement: e.target.value,
+    });
+  };
+
+  useEffect(async () => {
     const streamStatusResponse = await getStreamStatus(
-      state.apiKey, "0984a60e-3914-40d6-9a7c-a84692ee2a57"
+      state.apiKey, stream.attributes.streamId
       // stream.attributes.streamId,
     );
     setStreamKey(streamStatusResponse.data.streamKey);
@@ -46,7 +49,7 @@ function HostView() {
     <div className="player-div">
       <ReactHlsPlayer
         src={stream.attributes.streamURL}
-        autoPlay={true}
+        autoPlay={false}
         controls={true}
         width="100%"
         height="600px"
@@ -57,16 +60,16 @@ function HostView() {
       <h3>Description</h3>
       <p>{stream.attributes.description}</p>
       <button type="primary" onClick={showDrawer}>OBS parameters</button>
-        <Drawer
-          title="Basic Drawer"
-          placement={drawer.placement}
-          closable={false}
-          onClose={onClose}
-          visible={drawer.visible}
-        >
-          <h1>Stream Key: {streamKey}</h1>
-          <h1>Server: rtmp://rtmp.livepeer.com/live </h1>
-        </Drawer>
+      <Drawer
+        title="Basic Drawer"
+        placement={drawer.placement}
+        closable={false}
+        onClose={onClose}
+        visible={drawer.visible}
+      >
+        <h1>Stream Key: {streamKey}</h1>
+        <h1>Server: rtmp://rtmp.livepeer.com/live </h1>
+      </Drawer>
     </div>
   );
 }

@@ -21,6 +21,7 @@ import StreamView from "components/StreamView";
 import HostView from "components/HostView";
 import Stream from "components/Stream";
 import Streamer from "components/Streamer";
+import Register from "components/Register";
 import { StateProvider } from "StateProvider";
 const { Header } = Layout;
 import { APP_STATES } from "utils/types";
@@ -154,6 +155,9 @@ const App = ({ isServerInfo }) => {
               </Route>
               <Route path="/eventPlayer">
                 <StreamView />
+              </Route>
+              <Route path="/register">
+                <Register />
               </Route>
               <Route path="/eventHost">
                 <HostView />
