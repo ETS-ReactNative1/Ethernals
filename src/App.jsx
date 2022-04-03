@@ -15,7 +15,6 @@ import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
 import "./style.css";
 import QuickStart from "components/QuickStart";
-import Contract from "components/Contract/Contract";
 import MenuItems from "./components/MenuItems";
 import StreamView from "components/StreamView";
 import HostView from "components/HostView";
