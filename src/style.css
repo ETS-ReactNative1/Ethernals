@@ -18,3 +18,22 @@
   overflow: auto;
   border-radius: 1rem;
 }
+#logo-div {
+  margin-left: 20px;
+  width: 400px;
+  /* width: auto; */
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+}
+#logo {
+  /* height:50px; */
+  height:50px;
+}
+#banner-name {
+  color: var(--primary-background);
+  /* margin-top: 5px; */
+  margin-left: 10px;
+  font-size: 20px;
+  
+}

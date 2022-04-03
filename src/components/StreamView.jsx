@@ -23,7 +23,7 @@ function StreamView() {
       <button onClick={() => handleClick()}>check</button>
       <h1>{stream.attributes.title}</h1>
       <br />
-      <h3>Description</h3>
+      {/* <h3>Description</h3> */}
       <p>{stream.attributes.description}</p>
     </div>
   );

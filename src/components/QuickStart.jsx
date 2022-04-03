@@ -4,7 +4,8 @@ import React, { useMemo } from "react";
 import { useMoralis } from "react-moralis";
 import { Row, Col } from "antd";
 import globe from "../assets/globe.png";
-
+import logoLight from "../assets/Logo-light.png";
+import { Link, NavLink } from "react-router-dom";
 import "components/Home.css";
 
 const { Text } = Typography;
@@ -17,26 +18,30 @@ export default function QuickStart({ isServerInfo }) {
           Host and attend <br /> live events!
         </h1>
         <h2 id="tagline">The future of live streaming</h2>
-        <Button
-          type="primary"
-          className="home-button"
-          id="home-button-1"
-          shape="round"
-          icon={<RightCircleOutlined />}
-          size="large"
-        >
-          Start Stream
-        </Button>
-        <Button
-          type="primary"
-          className="home-button"
-          id="home-button-2"
-          shape="round"
-          icon={<PlayCircleOutlined />}
-          size="large"
-        >
-          View Stream
-        </Button>
+        <NavLink to="/stream">
+          <Button
+            type="primary"
+            className="home-button"
+            id="home-button-1"
+            shape="round"
+            icon={<RightCircleOutlined />}
+            size="large"
+          >
+            Start Stream
+          </Button>
+        </NavLink>
+        <Link to="/watchStream">
+          <Button
+            type="primary"
+            className="home-button"
+            id="home-button-2"
+            shape="round"
+            icon={<PlayCircleOutlined />}
+            size="large"
+          >
+            View Stream
+          </Button>
+        </Link>
       </Col>
       <Col span={10}>
         <img id="banner_image" src={globe} />

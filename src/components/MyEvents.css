@@ -17,6 +17,9 @@
 
 .stream-card img {
   border-radius: 20px;
+  width: 300px;
+  height: 150px;
+  object-fit: cover;
 }
 
 #all-streams {

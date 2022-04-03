@@ -51,7 +51,9 @@ function Streamer() {
   const handleFile = (event) => {
     event.preventDefault();
     setFile(event.target.files[0]);
-    console.log(file);
+    console.log("testtttt");
+    console.log("File[0]", event.target.files[0]);
+    console.log("file..", file);
     // file_input_label.current.innerHTML = event.target.files[0].name;
   };
   useEffect(async () => {

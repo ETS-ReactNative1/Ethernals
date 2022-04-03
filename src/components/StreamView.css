@@ -5,8 +5,8 @@
 }
 
 .player-div h1 {
-  color: var(--ghost-white);
-  font-size: 1.8vw;
+  color: var(--light-green);
+  font-size: 30px;
 }
 .player-div h3 {
   color: var(--ghost-white);
@@ -16,6 +16,6 @@
 
 .player-div p {
   color: var(--ghost-white);
-  font-size: 1.6vh;
+  font-size: 20px;
   margin: 0;
 }

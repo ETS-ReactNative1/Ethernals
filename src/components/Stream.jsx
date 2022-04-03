@@ -9,22 +9,28 @@ import {
   EllipsisOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
+
+
 import "components/Stream.css";
 
 function Stream() {
   const [streams, setStreams] = useState();
-  const { Moralis } = useMoralis();
+  const { account, Moralis } = useMoralis();
   const { Meta } = Card;
-
   // const getStreams = async () => {
 
   // };
   useEffect(async () => {
     // getStreams();
-    const query = new Moralis.Query("streams");
+    
+    const alchemyFunc = async () => {
+      const query = new Moralis.Query("streams");
     const fetched_streams = await query.find();
     setStreams(fetched_streams);
     console.log(fetched_streams);
+    }
+    await alchemyFunc();
+
     // getThumbnail(streams[0].attributes.img_hash);
   }, []);
 
