@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useMoralis } from "react-moralis";
 import Blockie from "components/Blockie";
 import { Card, Avatar } from "antd";
@@ -57,7 +57,7 @@ function MyEvents() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default MyEvents
+export default MyEvents;

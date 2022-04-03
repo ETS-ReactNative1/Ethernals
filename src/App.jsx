@@ -189,7 +189,7 @@ const App = ({ isServerInfo }) => {
 
 export const Logo = () => (
   <div id="logo-div" style={{ display: "flex" }}>
-    <img id="logo" src={logoLight}/>
+    <img id="logo" src={logoLight} />
     <h1 id="banner-name">StreamHance</h1>
   </div>
 );

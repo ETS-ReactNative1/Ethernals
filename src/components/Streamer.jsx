@@ -60,7 +60,10 @@ function Streamer() {
     if (state.appState === APP_STATES.CREATING_STREAM) {
       (async function () {
         try {
-          const streamCreateResponse = await createStream(state.apiKey, functionCallParams._title);
+          const streamCreateResponse = await createStream(
+            state.apiKey,
+            functionCallParams._title,
+          );
           if (streamCreateResponse.data) {
             const streamData = {
               streamId: streamCreateResponse.data.id,

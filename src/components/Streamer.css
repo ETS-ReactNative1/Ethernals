@@ -72,7 +72,7 @@
   z-index: -1;
 }
 
-#thubnail-div label span{
+#thubnail-div label span {
   /* font-size: 1.25em; */
   /* font-weight: 700; */
   color: var(--primary-background);

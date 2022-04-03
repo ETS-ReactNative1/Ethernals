@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
 import ReactHlsPlayer from "@panelist/react-hls-player";
 import { getStreamStatus } from "utils/apiFactory";
-import { Drawer, Button } from 'antd';
+import { Drawer, Button } from "antd";
 
 import "components/HostView.css";
 function HostView() {
@@ -11,7 +11,7 @@ function HostView() {
   const [streamKey, setStreamKey] = useState();
   const location = useLocation();
   const stream = location.state;
-  const [drawer, setDrawer] = useState({ visible: false, placement: 'bottom' });
+  const [drawer, setDrawer] = useState({ visible: false, placement: "bottom" });
   const showDrawer = () => {
     setDrawer({
       ...drawer,
@@ -35,7 +35,8 @@ function HostView() {
 
   useEffect(async () => {
     const streamStatusResponse = await getStreamStatus(
-      state.apiKey, stream.attributes.streamId
+      state.apiKey,
+      stream.attributes.streamId,
       // stream.attributes.streamId,
     );
     setStreamKey(streamStatusResponse.data.streamKey);
@@ -59,7 +60,9 @@ function HostView() {
       <br />
       <h3>Description</h3>
       <p>{stream.attributes.description}</p>
-      <button type="primary" onClick={showDrawer}>OBS parameters</button>
+      <button type="primary" onClick={showDrawer}>
+        OBS parameters
+      </button>
       <Drawer
         title="Basic Drawer"
         placement={drawer.placement}
